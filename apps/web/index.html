@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Fashion Marketplace - Discover trending fashion from top vendors. Shop clothing, accessories, footwear and more with exclusive deals.">
+  <meta name="keywords" content="fashion, clothing, shopping, marketplace, trends, style, apparel, accessories">
+  <meta name="author" content="Fashion Marketplace">
+  <meta name="theme-color" content="#FF6B6B">
+  
+  <!-- PWA Meta Tags -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Fashion Market">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon-180x180.png">
+  
+  <!-- Preconnect to API -->
+  <link rel="preconnect" href="%VITE_API_URL%" crossorigin>
+  <link rel="dns-prefetch" href="%VITE_API_URL%">
+  
+  <!-- Preload Critical Assets -->
+  <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/src/css/main.css" as="style">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/images/icons/favicon.svg">
+  <link rel="shortcut icon" href="/images/icons/favicon.ico">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://fashionmarketplace.com/">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fashion Marketplace - Trending Fashion Online">
+  <meta property="og:description" content="Discover trending fashion from top vendors. Shop clothing, accessories, footwear and more.">
+  <meta property="og:image" content="/images/og-image.jpg">
+  <meta property="og:url" content="https://fashionmarketplace.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <!-- Security Headers (also set by server) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' %VITE_API_URL% wss://%VITE_WS_URL%; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  
+  <title>Fashion Marketplace - Trending Fashion Online</title>
+  
+  <!-- Critical CSS Inline for Faster First Paint -->
+  <style>
+    /* Critical CSS for above-the-fold content */
+    :root {
+      --color-primary: #FF6B6B;
+      --color-primary-dark: #EE5A5A;
+      --color-secondary: #4ECDC4;
+      --color-accent: #FFE66D;
+      --color-text: #2D3436;
+      --color-text-light: #636E72;
+      --color-bg: #FFFFFF;
+      --color-bg-alt: #F8F9FA;
+      --color-border: #DFE6E9;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --transition-fast: 150ms ease;
+      --transition-normal: 300ms ease;
+      --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    /* Loading State */
+    #app-loader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-bg);
+      z-index: 9999;
+      transition: opacity var(--transition-normal), visibility var(--transition-normal);
+    }
+    
+    #app-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .loader-spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid var(--color-border);
+      border-top-color: var(--color-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Skip Link for Accessibility */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 600;
+      z-index: 10000;
+      transition: top var(--transition-fast);
+    }
+    
+    .skip-link:focus {
+      top: 16px;
+    }
+    
+    /* Focus Visible Styles */
+    :focus-visible {
+      outline: 3px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+    
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+  
+  <!-- Google Fonts (Preloaded above) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Accessibility: Skip to Main Content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- App Loader -->
+  <div id="app-loader" aria-live="polite" aria-busy="true">
+    <div class="loader-spinner" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  
+  <!-- Screen Reader Only Content -->
+  <div id="sr-announcements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  
+  <!-- Main Application -->
+  <div id="app" role="application" aria-label="Fashion Marketplace">
+    <!-- Dynamic content loaded by JavaScript -->
+  </div>
+  
+  <!-- Service Worker Registration -->
+  <script type="module" src="/src/js/core/service-worker-register.js"></script>
+  
+  <!-- Main Application Entry -->
+  <script type="module" src="/src/js/main.js"></script>
+  
+  <!-- Analytics (Deferred) -->
+  <script defer src="/src/js/core/analytics.js"></script>
+</body>
+</html>

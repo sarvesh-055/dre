@@ -1,0 +1,92 @@
+/* ===================================
+   FASHION MARKETPLACE - MAIN CSS
+   Enterprise-Grade Styling System
+   =================================== */
+
+/* Import Custom Properties (CSS Variables) */
+@import 'css/variables.css';
+
+/* Import Base & Reset */
+@import 'css/base/reset.css';
+@import 'css/base/typography.css';
+@import 'css/base/accessibility.css';
+
+/* Import Layout Components */
+@import 'css/layout/header.css';
+@import 'css/layout/footer.css';
+@import 'css/layout/grid.css';
+@import 'css/layout/container.css';
+
+/* Import UI Components */
+@import 'css/components/buttons.css';
+@import 'css/components/cards.css';
+@import 'css/components/forms.css';
+@import 'css/components/modals.css';
+@import 'css/components/navigation.css';
+@import 'css/components/product-card.css';
+@import 'css/components/badges.css';
+@import 'css/components/carousel.css';
+@import 'css/components/skeleton.css';
+@import 'css/components/toast.css';
+@import 'css/components/dropdown.css';
+@import 'css/components/tabs.css';
+@import 'css/components/pagination.css';
+@import 'css/components/loader.css';
+
+/* Import Page-Specific Styles */
+@import 'css/pages/home.css';
+@import 'css/pages/product-listing.css';
+@import 'css/pages/product-detail.css';
+@import 'css/pages/cart.css';
+@import 'css/pages/checkout.css';
+@import 'css/pages/account.css';
+@import 'css/pages/vendor-dashboard.css';
+@import 'css/pages/search.css';
+@import 'css/pages/offers.css';
+
+/* Import Utility Classes */
+@import 'css/utilities/animations.css';
+@import 'css/utilities/responsive.css';
+@import 'css/utilities/helpers.css';
+
+/* ===================================
+   PRINT STYLES
+   =================================== */
+@media print {
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  /* Hide non-essential elements */
+  header, footer, nav, aside, 
+  .no-print, .skip-link, 
+  #app-loader, .toast-container,
+  .modal-overlay, .dropdown-menu {
+    display: none !important;
+  }
+  
+  /* Ensure main content is visible */
+  main, #main-content, .printable {
+    display: block !important;
+    width: 100% !important;
+  }
+  
+  /* Print-friendly links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+  
+  /* Prevent page breaks inside elements */
+  .product-card, .order-item, .invoice {
+    page-break-inside: avoid;
+  }
+}
