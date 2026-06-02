@@ -1,0 +1,347 @@
+{
+  "indexes": [
+    {
+      "uid": "products",
+      "primaryKey": "id",
+      "settings": {
+        "searchableAttributes": [
+          "title",
+          "description",
+          "shortDescription",
+          "brand",
+          "vendorName",
+          "sku",
+          "tags",
+          "attributes.fabric",
+          "attributes.pattern",
+          "metaKeywords"
+        ],
+        "filterableAttributes": [
+          "vendorId",
+          "brand",
+          "categories",
+          "primaryCategory",
+          "price",
+          "mrp",
+          "rating.average",
+          "rating.count",
+          "variants.color",
+          "variants.size",
+          "variants.stock",
+          "variants.attributes.color",
+          "variants.attributes.size",
+          "status",
+          "visibility",
+          "shippingInfo.freeShipping",
+          "shippingInfo.codAvailable",
+          "tags",
+          "publishedAt"
+        ],
+        "sortableAttributes": [
+          "basePrice",
+          "mrp",
+          "rating.average",
+          "rating.count",
+          "salesMetrics.totalSold",
+          "salesMetrics.last30DaysSold",
+          "salesMetrics.views",
+          "salesMetrics.wishlistCount",
+          "publishedAt",
+          "createdAt",
+          "updatedAt"
+        ],
+        "rankingRules": [
+          "typo",
+          "words",
+          "proximity",
+          "attribute",
+          "sort",
+          "exactness",
+          "custom_ranking:desc(rating.average)",
+          "custom_ranking:desc(salesMetrics.totalSold)"
+        ],
+        "stopWords": [
+          "the",
+          "a",
+          "an",
+          "and",
+          "or",
+          "but",
+          "in",
+          "on",
+          "at",
+          "to",
+          "for",
+          "of",
+          "with",
+          "by",
+          "is",
+          "are",
+          "was",
+          "were"
+        ],
+        "synonyms": {
+          "kurta": ["kurti", "ethnic top", "tunic"],
+          "jeans": ["denim", "trousers", "pants"],
+          "saree": ["sari", "traditional drape"],
+          "shirt": ["formal shirt", "casual shirt", "top"],
+          "tshirt": ["t-shirt", "tee", "casual wear"],
+          "shoes": ["footwear", "sneakers", "boots", "sandals"],
+          "dress": ["gown", "frock", "outfit"],
+          "jacket": ["blazer", "coat", "outerwear"],
+          "sweater": ["pullover", "knitwear", "cardigan"],
+          "shorts": ["bermudas", "hot pants"],
+          "leggings": ["tights", "churidar"],
+          "dupatta": ["scarf", "stole", "shawl"],
+          "blouse": ["top", "shirt", "upper"],
+          "skirt": ["lehenga", "bottom wear"],
+          "palazzo": ["wide leg pants", "culottes"],
+          "ankle length": ["cropped", "short length"],
+          "full sleeve": ["long sleeve", "covered arms"],
+          "half sleeve": ["short sleeve", "elbow length"],
+          "sleeveless": ["no sleeve", "armless"],
+          "regular fit": ["normal fit", "standard fit"],
+          "slim fit": ["tight fit", "narrow fit"],
+          "loose fit": ["baggy", "relaxed fit"],
+          "cotton": ["pure cotton", "100% cotton"],
+          "silk": ["pure silk", "art silk"],
+          "linen": ["flax", "linen blend"],
+          "polyester": ["synthetic", "poly blend"],
+          "wool": ["woolen", "winter wear"],
+          "denim": ["jeans fabric", "blue fabric"],
+          "georgette": ["geo", "flowy fabric"],
+          "chiffon": ["light fabric", "sheer fabric"],
+          "velvet": ["soft fabric", "luxury fabric"],
+          "brocade": ["embroidered", "patterned fabric"],
+          "printed": ["pattern", "design"],
+          "plain": ["solid", "single color"],
+          "striped": ["lines", "pattern"],
+          "checkered": ["checks", "plaid"],
+          "floral": ["flower print", "botanical"],
+          "party wear": ["festive", "celebration", "occasion wear"],
+          "casual wear": ["everyday", "daily wear", "regular"],
+          "formal wear": ["office wear", "work wear", "professional"],
+          "sports wear": ["activewear", "gym wear", "athletic"],
+          "beach wear": ["swimwear", "resort wear"],
+          "night wear": ["sleepwear", "loungewear"],
+          "bridal": ["wedding", "marriage"],
+          "festive": ["festival", "celebration", "party"],
+          "western": ["modern", "contemporary"],
+          "ethnic": ["traditional", "indian", "desi"],
+          "fusion": [" Indo-western", "mix"],
+          "vintage": ["retro", "classic", "old style"],
+          "trendy": ["fashionable", "stylish", "modern"],
+          "classic": ["timeless", "traditional"],
+          "bohemian": ["boho", "hippie", "free spirit"]
+        },
+        "typoTolerance": {
+          "enabled": true,
+          "minWordSizeForTypos": {
+            "oneTypo": 5,
+            "twoTypos": 9
+          },
+          "disableOnWords": [],
+          "disableOnAttributes": ["sku", "barcode"]
+        },
+        "faceting": {
+          "maxValuesPerFacet": 100
+        },
+        "pagination": {
+          "maxTotalHits": 10000
+        },
+        "distinctAttribute": "slug",
+        "highlightPreTag": "<em>",
+        "highlightPostTag": "</em>",
+        "cropLength": 200,
+        "cropMarker": "..."
+      }
+    },
+    {
+      "uid": "categories",
+      "primaryKey": "id",
+      "settings": {
+        "searchableAttributes": [
+          "name",
+          "description",
+          "metaTitle",
+          "metaDescription"
+        ],
+        "filterableAttributes": [
+          "level",
+          "parentCategory",
+          "isActive"
+        ],
+        "sortableAttributes": [
+          "level",
+          "sortOrder",
+          "name"
+        ],
+        "rankingRules": [
+          "words",
+          "typo",
+          "proximity",
+          "attribute",
+          "sort",
+          "exactness"
+        ],
+        "typoTolerance": {
+          "enabled": true,
+          "minWordSizeForTypos": {
+            "oneTypo": 4,
+            "twoTypos": 8
+          }
+        }
+      }
+    },
+    {
+      "uid": "brands",
+      "primaryKey": "id",
+      "settings": {
+        "searchableAttributes": [
+          "name",
+          "description",
+          "metaTitle"
+        ],
+        "filterableAttributes": [
+          "isActive",
+          "isFeatured",
+          "countryOfOrigin"
+        ],
+        "sortableAttributes": [
+          "name",
+          "popularity"
+        ],
+        "rankingRules": [
+          "words",
+          "typo",
+          "proximity",
+          "attribute",
+          "sort",
+          "exactness",
+          "custom_ranking:desc(popularity)"
+        ],
+        "synonyms": {
+          "nike": ["nike inc", "nike brand"],
+          "adidas": ["adidas group", "three stripes"],
+          "zara": ["zara home", "inditex"],
+          "h&m": ["h and m", "hm", "hennes mauritz"],
+          "uniqlo": ["fast retailing"],
+          "levi": ["levis", "levi strauss"],
+          "puma": ["puma se"],
+          "reebok": ["reebok ccm"],
+          "gucci": ["gucci group"],
+          "prada": ["prada group"],
+          "louis vuitton": ["lv", "lvmh"],
+          "chanel": ["chanel sa"],
+          "dior": ["christian dior"],
+          "versace": ["gianni versace"],
+          "armani": ["giorgio armani", "emporio armani"],
+          "calvin klein": ["ck", "calvin klein inc"],
+          "tommy hilfiger": ["tommy", "hilfiger"],
+          "ralph lauren": ["polo", "rl"],
+          "burberry": ["burberry group"],
+          "hermes": ["hermes international"],
+          "fendi": ["fendi srl"],
+          "balenciaga": ["balenciaga sa"],
+          "givenchy": ["givenchy paris"],
+          "ysl": ["yves saint laurent"],
+          "valentino": ["valentino garavani"],
+          "dolce gabbana": ["dg", "dolce&gabbana"],
+          "miumiu": ["miu miu"],
+          "coach": ["coach inc"],
+          "michael kors": ["mk", "kors"],
+          "guess": ["guess inc"],
+          "gap": ["gap inc"],
+          "forever 21": ["f21", "forevertwentyone"],
+          "old navy": ["oldnavy"],
+          "target": ["target corporation"],
+          "walmart": ["walmart inc"],
+          "amazon": ["amazon fashion", "amaozn"],
+          "flipkart": ["flipkart fashion"],
+          "myntra": ["myntra designs"],
+          "ajio": ["reliance trends", "ajio com"],
+          "meesho": ["meesho inc"]
+        },
+        "typoTolerance": {
+          "enabled": true,
+          "minWordSizeForTypos": {
+            "oneTypo": 4,
+            "twoTypos": 8
+          }
+        }
+      }
+    },
+    {
+      "uid": "vendors",
+      "primaryKey": "id",
+      "settings": {
+        "searchableAttributes": [
+          "businessName",
+          "description",
+          "contactEmail"
+        ],
+        "filterableAttributes": [
+          "status",
+          "kycStatus",
+          "businessType",
+          "rating",
+          "totalSales"
+        ],
+        "sortableAttributes": [
+          "rating",
+          "totalSales",
+          "totalOrders",
+          "createdAt"
+        ],
+        "rankingRules": [
+          "words",
+          "typo",
+          "proximity",
+          "attribute",
+          "sort",
+          "exactness",
+          "custom_ranking:desc(rating)",
+          "custom_ranking:desc(totalSales)"
+        ],
+        "typoTolerance": {
+          "enabled": true
+        }
+      }
+    }
+  ],
+  "globalSettings": {
+    "logLevel": "INFO",
+    "dbPath": "/meilisearch_data",
+    "env": "production",
+    "maxIndexSize": "100 GB",
+    "maxTaskDBSize": "100 GB",
+    "httpPayloadSizeLimit": "100 MB",
+    "dumpDir": "/meilisearch_dumps",
+    "snapshotDir": "/meilisearch_snapshots",
+    "snapshotInterval": "1 hour",
+    "scheduleSnapshot": true
+  },
+  "analyticsSettings": {
+    "enableAnalytics": true,
+    "analyticsUrl": "/analytics",
+    "retainDataDays": 90
+  },
+  "securitySettings": {
+    "apiKeyUid": "default-api-key",
+    "actions": [
+      "search",
+      "documents.add",
+      "documents.get",
+      "documents.delete",
+      "indexes.create",
+      "indexes.get",
+      "indexes.update",
+      "indexes.delete",
+      "tasks.get",
+      "settings.get",
+      "settings.update"
+    ],
+    "indexes": ["*"],
+    "expiresAt": null
+  }
+}
