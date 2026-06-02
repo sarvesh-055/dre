@@ -2,23 +2,25 @@
 # Dependencies
 node_modules/
 
-# Logs and temp files
-*.log
-*.tmp
+# Build outputs
+dist/
+build/
+*.js.map
+*.css.map
 
 # Environment
 .env
 .env.local
-*.env.*
+.env.*
 
 # Editors
 .vscode/
 .idea/
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
+# Logs
+*.log
+
+# Temp files
+*.tmp
+*.swp
 ```

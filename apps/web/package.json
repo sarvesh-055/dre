@@ -1,0 +1,48 @@
+{
+  "name": "@fashion-marketplace/web",
+  "version": "1.0.0",
+  "description": "Customer-facing PWA for Fashion Marketplace",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .js",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "pwa:generate": "node scripts/generate-pwa-assets.js"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "i18next": "^23.10.1",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "idb": "^8.0.0",
+    "workbox-core": "^7.0.0",
+    "workbox-precaching": "^7.0.0",
+    "workbox-routing": "^7.0.0",
+    "workbox-strategies": "^7.0.0",
+    "workbox-cacheable-response": "^7.0.0",
+    "workbox-expiration": "^7.0.0",
+    "workbox-background-sync": "^7.0.0",
+    "workbox-navigation-preload": "^7.0.0",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0",
+    "vite-plugin-pwa": "^0.19.8",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "eslint": "^8.57.0",
+    "vitest": "^1.5.0",
+    "@vitest/coverage-v8": "^1.5.0",
+    "playwright": "^1.43.0",
+    "@playwright/test": "^1.43.0",
+    "sharp": "^0.33.3",
+    "favicons": "^7.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

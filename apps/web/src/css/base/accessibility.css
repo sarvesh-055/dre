@@ -1,0 +1,557 @@
+/* ===================================
+   ACCESSIBILITY STYLES
+   WCAG 2.1 AA Compliance
+   =================================== */
+
+/* ===================================
+   FOCUS MANAGEMENT
+   =================================== */
+
+/* Visible focus indicator for keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Enhanced focus for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible,
+[role="link"]:focus-visible,
+[role="menuitem"]:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--color-primary-fade);
+}
+
+/* Focus within for compound components */
+.form-group:focus-within,
+.card:focus-within,
+.menu-item:focus-within {
+  box-shadow: 0 0 0 2px var(--color-primary-fade);
+}
+
+/* Remove default focus for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* ===================================
+   SKIP LINKS
+   =================================== */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  z-index: var(--z-loader);
+  transition: top var(--duration-fast) var(--ease-in-out);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+.skip-link:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* ===================================
+   SCREEN READER UTILITIES
+   =================================== */
+
+/* Visually hidden but accessible to screen readers */
+.sr-only,
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Make sr-only content visible when focused */
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Announcer for dynamic content updates */
+#sr-announcements {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===================================
+   ARIA LIVE REGIONS
+   =================================== */
+
+[aria-live="polite"] {
+  /* Polite announcements wait for user to finish current task */
+}
+
+[aria-live="assertive"] {
+  /* Assertive announcements interrupt immediately */
+}
+
+[aria-live="off"] {
+  /* No announcements */
+}
+
+/* ===================================
+   HIGH CONTRAST MODE SUPPORT
+   =================================== */
+
+@media (prefers-contrast: high) {
+  /* Increase contrast for all borders */
+  * {
+    border-color: var(--color-text) !important;
+  }
+  
+  /* Ensure links are distinguishable */
+  a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  
+  /* Enhance focus indicators */
+  :focus-visible {
+    outline: 3px solid var(--color-text);
+    outline-offset: 3px;
+  }
+  
+  /* Ensure buttons have clear borders */
+  button,
+  [role="button"] {
+    border: 2px solid currentColor;
+  }
+  
+  /* Make form inputs more distinct */
+  input,
+  select,
+  textarea {
+    border-width: 2px;
+  }
+}
+
+/* Windows High Contrast Mode */
+@media (forced-colors: active) {
+  /* Force colors to respect system preferences */
+  .btn-primary {
+    forced-color-adjust: none;
+  }
+  
+  /* Ensure icons are visible */
+  svg {
+    forced-color-adjust: none;
+  }
+}
+
+/* ===================================
+   REDUCED MOTION SUPPORT
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Replace animations with instant state changes */
+  .fade-in,
+  .slide-in,
+  .scale-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  /* Disable parallax effects */
+  .parallax {
+    transform: none !important;
+  }
+  
+  /* Disable hover animations */
+  .card:hover,
+  .product-card:hover {
+    transform: none !important;
+  }
+  
+  /* Disable loading spinners */
+  .spinner {
+    animation: none !important;
+    border: 3px solid var(--color-border);
+    border-top-color: transparent;
+  }
+}
+
+/* ===================================
+   TEXT RESIZING & SCALING
+   =================================== */
+
+/* Support browser zoom up to 200% */
+@media (max-width: 320px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Ensure text remains readable at large sizes */
+@media (min-resolution: 192dpi) {
+  body {
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* Prevent text truncation issues when scaled */
+.truncate {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* ===================================
+   COLOR BLINDNESS CONSIDERATIONS
+   =================================== */
+
+/* Never use color alone to convey information */
+.error-message::before {
+  content: "⚠ ";
+}
+
+.success-message::before {
+  content: "✓ ";
+}
+
+.warning-message::before {
+  content: "⚡ ";
+}
+
+.info-message::before {
+  content: "ℹ ";
+}
+
+/* Ensure form validation is clear without color */
+.input-error {
+  border: 2px solid var(--color-error);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23EF4444'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px 20px;
+  padding-right: 44px;
+}
+
+.input-success {
+  border: 2px solid var(--color-success);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310B981'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px 20px;
+  padding-right: 44px;
+}
+
+/* ===================================
+   TOUCH TARGET SIZES
+   =================================== */
+
+/* Minimum touch target size: 44x44px (WCAG 2.1 AAA) */
+button,
+.btn,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+select,
+a[href],
+[tabindex] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Exception for inline links */
+p a,
+span a,
+li a {
+  min-height: auto;
+  padding: var(--space-1) var(--space-2);
+}
+
+/* Increase touch targets on mobile */
+@media (max-width: 768px) {
+  button,
+  .btn,
+  [role="button"] {
+    min-height: 48px;
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  /* Form inputs should be easy to tap */
+  input,
+  select,
+  textarea {
+    min-height: 48px;
+    padding: var(--space-3);
+  }
+}
+
+/* ===================================
+   LANDMARK REGIONS
+   =================================== */
+
+/* Ensure proper document structure */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Skip navigation links to landmarks */
+.skip-links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--z-loader);
+}
+
+/* ===================================
+   MODAL ACCESSIBILITY
+   =================================== */
+
+.modal-overlay[aria-hidden="true"] {
+  display: none;
+}
+
+.modal-overlay[aria-hidden="false"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Trap focus within modal */
+.modal-content:focus-within {
+  outline: none;
+}
+
+/* Close button should be easily accessible */
+.modal-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--space-2);
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background-color: var(--color-gray-200);
+}
+
+/* ===================================
+   FORM ACCESSIBILITY
+   =================================== */
+
+/* Labels must be associated with inputs */
+label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Required fields indicator */
+label.required::after {
+  content: " *";
+  color: var(--color-error);
+}
+
+/* Error messages should be linked to inputs */
+.error-message {
+  color: var(--color-error);
+  font-size: var(--text-sm);
+  margin-top: var(--space-1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Helper text */
+.helper-text {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  margin-top: var(--space-1);
+}
+
+/* Fieldset legends */
+legend {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-4);
+}
+
+/* ===================================
+   TABLE ACCESSIBILITY
+   =================================== */
+
+/* Caption for tables */
+caption {
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  padding: var(--space-3);
+  caption-side: top;
+}
+
+/* Scope attributes help screen readers */
+th[scope="col"] {
+  font-weight: var(--font-weight-semibold);
+}
+
+th[scope="row"] {
+  font-weight: var(--font-weight-medium);
+}
+
+/* ===================================
+   ANIMATION ALTERNATIVES
+   =================================== */
+
+/* Provide pause controls for auto-playing content */
+.carousel[aria-roledescription="carousel"] {
+  /* Should have pause/play buttons */
+}
+
+/* Blinking content should be controllable */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blink {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ===================================
+   PROGRESS INDICATORS
+   =================================== */
+
+/* Progress bars should have text alternatives */
+progress {
+  position: relative;
+}
+
+progress::after {
+  content: attr(value) " / " attr(max);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Loading states should announce to screen readers */
+[aria-busy="true"] {
+  cursor: progress;
+}
+
+[aria-busy="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+/* ===================================
+   PRINT ACCESSIBILITY
+   =================================== */
+
+@media print {
+  /* Hide non-essential interactive elements */
+  .no-print,
+  button,
+  [role="button"],
+  nav,
+  header,
+  footer {
+    display: none !important;
+  }
+  
+  /* Ensure main content is readable */
+  main,
+  article,
+  section {
+    display: block !important;
+  }
+  
+  /* Expand all collapsed content */
+  details {
+    display: block !important;
+  }
+  
+  details > summary {
+    display: none;
+  }
+  
+  /* Show URLs for links */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: var(--color-text-secondary);
+  }
+  
+  /* Avoid breaking inside cards/items */
+  .card,
+  .product-card,
+  .order-item {
+    page-break-inside: avoid;
+  }
+}
